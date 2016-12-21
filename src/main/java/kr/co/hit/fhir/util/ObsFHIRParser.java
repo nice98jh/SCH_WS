@@ -72,7 +72,7 @@ public class ObsFHIRParser {
 	public String obsParam(){
 		System.out.println("5. l-hospital url 시작");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("userid", "000000161");
+		map.put("userid", getUserId());
 		map.put("effectiveDateTime", getEffectiveDateTime());
 		map.put("bodySite", getbodySite());
 		map.put("reference", getSubject());
@@ -110,6 +110,10 @@ public class ObsFHIRParser {
 			map.put(display, value);
 		}
 		return map.get(key);
+	}
+	
+	public String getUserId(){
+		return obsjson.findValue("userId").asText();
 	}
 	
 	public String getLastUpdated(){

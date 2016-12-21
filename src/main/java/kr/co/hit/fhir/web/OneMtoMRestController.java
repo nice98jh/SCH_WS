@@ -22,7 +22,7 @@ public class OneMtoMRestController {
 		OneMtoMParser onemtom = new OneMtoMParser();
 		onemtom.omtmReceiver(map);
 		
-		System.out.println("2. onemtom 종료");
+		System.out.println("onemtom 종료");
 		
 	}	
 }

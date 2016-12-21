@@ -3,6 +3,8 @@ package kr.co.hit.fhir.util;
 import java.io.IOException;
 import java.util.Map;
 
+import kr.co.hit.fhir.util.ObsFHIRGenerator;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,11 +20,17 @@ public class OneMtoMParser {
 			e.printStackTrace();
 		}
 		System.out.println("2. omtm Parser 시작");
-		new ObsFHIRGenerator().sendtoParser(getLBL(), getHDP(), getLDP(), getPulse());
+		new ObsFHIRGenerator().sendtoParser(getUserID(), getLBL(), getHDP(), getLDP(), getPulse());
 	}
 	
 	public String getLBL(){
 		return omtmjson.findValue("lbl").asText();		
+	}
+	
+	public String getUserID(){
+		String con = omtmjson.findValue("con").asText();
+		int conlen = con.indexOf("id");
+		return con.substring(con.indexOf(":",conlen)+1,con.indexOf(",",conlen));
 	}
 
 	public String getHDP(){
